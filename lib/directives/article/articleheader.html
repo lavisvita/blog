@@ -1,0 +1,167 @@
+<section class="article-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-11 col-md-11 col-lg-11 col-lg-push-1 article-header-container">
+                <div ng-repeat="item in content">
+                    <div class="article-header-date">
+                        {{item.post_date}}
+                    </div>
+                    <div style="display: none" class="post-preview-text">{{item.post_preview}}</div>
+                    <div style="display: none" class="post-img">{{item.post_img}}</div>
+                    <div class="article-header-header">
+                        {{item.post_header}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="desktop">
+            <div class="row">
+                <div class="col-sm-11 col-md-11 col-lg-11 col-lg-push-1 article-header-footer">
+                    <a href="" back-button class="link-back"></a>
+                    <span class="article-details-comments">
+                        <img src="lib/img/ico/ico-comments.png" class="article-details-ico-comments">{{content[1].post_comments}}
+                    </span>
+                    <span class="article-details-views">
+                        <img src="lib/img/ico/ico-views.png" class="article-details-ico-views"> {{content[1].post_views}}
+                    </span>
+                    <span class="ico-share pull-right"><img src="lib/img/ico/ico-share.png">
+                        <ul class="pull-left ico-list">
+                            <li><a href="" id="share-btn" style="position: relative; color: #fff;"><img src="lib/img/ico/ico-facebook.png"></a></li>
+                            <li><a id="kontakt" onclick="Share.vkontakte()" style="position: relative; color: #fff;"><img src="lib/img/ico/ico-vk.png"></a></li>
+                            <li><a id="twitter" socialshare socialshare-provider="twitter" href="" style="color: #fff; position: relative; z-index: 10"><img src="lib/img/ico/ico-twitter.png"></a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="mobile">
+            <div class="row">
+                <div class="col-sm-11 col-md-11 col-lg-11 col-lg-push-1 article-header-footer text-center">
+                    <span class="article-details-comments">
+                        <img src="lib/img/ico/ico-comments.png" class="article-details-ico-comments">{{content[1].post_comments}}
+                    </span>
+                    <span class="article-details-views">
+                        <img src="lib/img/ico/ico-views.png" class="article-details-ico-views"> {{content[1].post_views}}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-11 col-md-11 col-lg-11 col-lg-push-1 article-header-footer text-center">
+                    <a ng-href="/blog" back-button class="link-back">назад</a>
+                </div>
+            </div>
+        <div class="row">
+            <div class="text-center">
+                <ul class="ico-list">
+                    <li><a href="" onclick="showDialog()" id="share-btn" style="position: relative; color: #fff;"><img src="lib/img/ico/ico-facebook.png"></a></li>
+                    <li><a onclick="Share.vkontakte()" style="position: relative; color: #fff;"><img src="lib/img/ico/ico-vk.png"></a></li>
+                    <li><a id="twitter" socialshare socialshare-provider="twitter" href="" style="color: #fff; position: relative; z-index: 10"><img src="lib/img/ico/ico-twitter.png"></a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+    <script>
+
+
+// ------------------------------------------------ VK share start ----------------------------------------------
+
+    Share = {
+    vkontakte: function() {
+
+        var pageUrl = window.location.href;
+        var siteHostName = window.location.hostname;
+        var title = document.getElementsByClassName('article-header-header');
+        var description = document.getElementsByClassName('post-preview-text');
+        var img = document.getElementsByClassName('post-img');
+        var titleProd = title[1].outerHTML.trim();
+        titleProd = titleProd.replace(/<[^>]+>/g,'');
+        var descriptionProd = description[1].outerHTML.trim();
+        descriptionProd = descriptionProd.replace(/<[^>]+>/g,'');
+        var imgProd =img[1].outerHTML.trim();
+        imgProd = imgProd.replace(/<[^>]+>/g,'');
+        url  = 'http://vkontakte.ru/share.php?';
+        url += 'url='          + encodeURIComponent(pageUrl);
+        url += '&title='       + encodeURIComponent(titleProd);
+        url += '&description=' + encodeURIComponent(descriptionProd);
+        url += '&image='       + encodeURIComponent('http://' + siteHostName + '/lib/upload/' + imgProd);
+        url += '&noparse=true';
+        Share.popup(url);
+    },
+    popup: function(url) {
+        var socialsharePopupWidth = 900;
+        var socialsharePopupHeight = 650;
+        window.open(url,'','toolbar=0,status=0,width=toolbar=0,status=0,resizable=yes,width=' + socialsharePopupWidth + ',height=' + socialsharePopupHeight
+                + ',top=' + (window.innerHeight - socialsharePopupHeight) / 2 + ',left=' + (window.innerWidth - socialsharePopupWidth) / 2);
+    }
+};
+
+// ------------------------------------------------ VK share end -------------------------------------------------
+var el = document.getElementById("share-btn");
+el.addEventListener("click", showDialog, false);
+
+        function showDialog() {
+            var pageUrl = window.location.href;
+            var siteHostName = window.location.hostname;
+            var title = document.getElementsByClassName('article-header-header');
+            var description = document.getElementsByClassName('post-preview-text');
+            var img = document.getElementsByClassName('post-img');
+            var titleProd = title[1].outerHTML.trim();
+            titleProd = titleProd.replace(/<[^>]+>/g,'');
+            var descriptionProd = description[1].outerHTML.trim();
+            descriptionProd = descriptionProd.replace(/<[^>]+>/g,'');
+            var imgProd =img[1].outerHTML.trim();
+            imgProd = imgProd.replace(/<[^>]+>/g,'');
+            FB.init({
+                appId      : '368898866801389',
+                xfbml      : true,
+                version    : 'v2.8'
+            });
+
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                title: titleProd,
+                description: descriptionProd,
+                text: 'TEXT TEXT TEXT TEXTTEXT TEXTTEXT TEXT',
+                picture: 'http://' + siteHostName + '/lib/upload/' + imgProd,
+                href: pageUrl,
+            }, function(response){});
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        }
+//         ShareOk = {
+//            ok: function() {
+//                var pageUrl = window.location.href;
+//                var siteHostName = window.location.hostname;
+//                var title = document.getElementsByClassName('article-header-header');
+//                var description = document.getElementsByClassName('post-preview-text');
+//                var img = document.getElementsByClassName('post-img');
+//                var titleProd = title[1].innerText.trim();
+//                var descriptionProd = description[1].innerText.trim();
+//                var imgProd =img[1].innerText.trim();
+//
+//                url  = 'http://www.odnoklassniki.ru/dk?st.cmd=addShare';
+//                url += '&st._surl='    + encodeURIComponent(pageUrl);
+//                url += '&st.utext=' + encodeURIComponent(descriptionProd);
+//                ShareOk.popup(url);
+//            },
+//            popup: function(url) {
+//                var socialsharePopupWidth = 900;
+//                var socialsharePopupHeight = 650;
+//                window.open(url,'','toolbar=0,status=0,width=toolbar=0,status=0,resizable=yes,width=' + socialsharePopupWidth + ',height=' + socialsharePopupHeight
+//                        + ',top=' + (window.innerHeight - socialsharePopupHeight) / 2 + ',left=' + (window.innerWidth - socialsharePopupWidth) / 2);
+//            }
+//        };
+    </script>
+
+</section>

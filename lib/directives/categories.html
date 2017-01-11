@@ -1,0 +1,176 @@
+<section class="categories">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12" style="padding: 0;">
+                <div class="categories-container">
+                    <div class="desktop">
+                        <ul class="categories-menu">
+                            <li class="setActiveClass" ng-class="{active : activeMenuAllArticles === 'allArticles'}"><a href="" ng-click="getAllArticles(); showMenu(showMenu1); setActiveAllArticles();">Все статьи</a></li>
+                            <li ng-repeat="category in categories" class="setActiveClass" ng-class="{active : activeMenu === category.cat_name}"><a href="#/" ng-click="showCategoryArticles(category.id); setActive(category.cat_name)">{{category.cat_name}}</a></li>
+                        </ul>
+                    </div>
+                    <div class="mobile">
+                        <div class="mobile-menu-ico" ng-click="showMenu(showMenu1)">
+                            <img src="lib/img/ico/ico-menu.png"  class="ico-menu-mobile pull-right">
+                        </div>
+                        <div class="sandwitch" ng-if="showMenu1">
+                            <ul class="categories-menu">
+                                <li><a href="" ng-click="getAllArticles(); showMenu(showMenu1)">Все статьи</a></li>
+                                <li ng-repeat="category in categories" ><a href="#/" ng-click="showCategoryArticles(category.id); showMenu(showMenu1)">{{category.cat_name}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--<section class="post-filter">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+                <!--<a href="" ng-click="orderByMyFilter('-post_date');" class="post-filter-last-messages">Последние</a>-->
+                <!--<span class="post-filter-devider">/</span>-->
+                <!--<a href="" ng-click="orderByMyFilter('-post_views');" class="post-filter-popular-messages">Популярные</a>-->
+                 <!--<a href="" class="post-filter-subscribe pull-right" id="showSubscribeForm">подписаться</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<div ng-repeat="article in articlesRow | orderBy: myOrderFilter" id="{{article.id}}" >
+    <articles article='article' ></articles>
+</div>
+
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col-sm-12 col-md-12 col-lg-4 col-lg-push-5">-->
+            <!--<a class="button-add-more-articles" href="" ng-click="seeMoreArticles(18, category.id)" >Загрузить ещё</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="background-fill"></div>
+<div class="thanksForSending">Спасибо! Вы успешно подписались!
+    <div>Мы выслали, Вам, письмо на почту для подтверждения email-адреса.</div>
+</div>
+<!-- Begin MailChimp Signup Form -->
+<div id="mc_embed_signup">
+    <form action="" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <a href="" id="closeSubscribersForm"><img class="cross pull-right" src="lib/img/ico/cross-in-circle.png"></a>
+        <div id="mc_embed_signup_scroll">
+            <h2>Подпишитесь на обновления</h2>
+            <div class="mc-field-group">
+                <input type="text" value="" name="LNAME" placeholder="Ваше имя" class="required" id="mce-LNAME">
+            </div>
+            <div class="mc-field-group">
+                <input type="email" value="" name="EMAIL" class="required email" placeholder="Ваш e-mail" id="mce-EMAIL">
+            </div>
+            <div id="mce-responses" class="clear">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_c91cad96734634946c8f3f28e_524bdbe147" tabindex="-1" value=""></div>
+            <div class="clear">
+                <input type="submit" value="Подписаться" name="subscribe" id="mc-embedded-subscribe" class="button">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+<script>
+    $(document).ready(function(){
+
+    var clientWidth = window.innerWidth;
+    var subscribeDataBlockWidth = parseInt($('#mc_embed_signup').css('width'));
+    var xBlockPosition = clientWidth / 2 - subscribeDataBlockWidth / 2;
+    var thanksWidth = parseInt($('.thanksForSending').css('width'));
+    var xThanks = clientWidth / 2 - thanksWidth /2;
+
+    // - width
+
+    // - height
+    var clientHeight = window.innerHeight;
+    var subscribeDataBlockHeight = parseInt($('#mc_embed_signup').css('height'));
+    var yBlockPosition = clientHeight / 2 - subscribeDataBlockHeight /1.7;
+
+    var thanksHeight = parseInt($('.thanksForSending').css('height'));
+    var yThanks = clientHeight/ 2 - thanksHeight/1.7;
+
+    // - height
+    $('#mc_embed_signup').css({'left': xBlockPosition + 'px', 'top': yBlockPosition + 'px'});
+    $('.thanksForSending').css({'top': yThanks + 'px', 'left': xThanks + 'px'});
+
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    function validateText(text){
+        var re = /^[\-\.\?\!\)\(\,\:\a-zа-яё\-\.\?\!\)\(\,\:\d]{1}[\-\.\?\!\)\(\,\:a-zа-яё\-\.\?\!\)\(\,\:\d\s]*[\-\.\?\!\)\(\,\:a-zа-яё\-\.\?\!\)\(\,\:\d]{1}$/i;
+        return re.test(text);
+    }
+    $('#mce-EMAIL').on('keyup', function(){
+        var emailSubscriber = $(this).val();
+        var res = validateEmail(emailSubscriber);
+        if(res){
+            $(this).css('border', '2px solid green');
+        }else{
+            $(this).css('border', '2px solid red');
+        }
+    });
+
+    $('#mce-LNAME').on('keyup', function(){
+        var nameSubscriber = $(this).val();
+        var res =validateText(nameSubscriber);
+        if(res){
+            $(this).css('border', '2px solid green');
+        }else{
+            $(this).css('border', '2px solid red');
+        }
+    });
+    $('#showSubscribeForm').on("click", function(e) {
+        $('#mc_embed_signup').fadeIn(700);
+        $('.background-fill').fadeIn(700);
+    });
+        $('#closeSubscribersForm').on("click", function(e) {
+            $('#mc_embed_signup').fadeOut(700);
+            $('.background-fill').fadeOut(700);
+        });
+
+    $("#mc-embedded-subscribe").on("click", function(e) {
+        e.preventDefault();
+            var data = $("form#mc-embedded-subscribe-form").serialize();
+            var emailSubscriber = $('#mce-EMAIL').val(),
+                nameSubscriber = $('#mce-LNAME').val();
+        var emailValidation = validateEmail(emailSubscriber);
+        var nameValidation = validateText(nameSubscriber);
+            if( emailValidation == true && nameValidation == true){
+                console.log('all good');
+            $.ajax({
+                method : "POST",
+                url : "//reklamakrasnodar.us14.list-manage.com/subscribe/post?u=c91cad96734634946c8f3f28e&amp;id=524bdbe147",
+                data : data
+            }).done(function(msg) {
+                console.log("Local email Data Saved");
+            });
+            $.ajax({
+                method : "POST",
+                url : "/blog/lib/request_handler/sendEmailNotice.php",
+                data : data
+            }).done(function(msg) {
+                console.log("Notice sent");
+            });
+            $('#mc_embed_signup').fadeOut(700);
+            $(".thanksForSending").fadeIn(700);
+            setTimeout(function(){
+                $(".thanksForSending").fadeOut(700);
+                $('.background-fill').fadeOut(700);
+                $('#mce-EMAIL').val("");
+                $('#mce-LNAME').val("");
+            }, 3000);
+        }
+        });
+
+    });
+</script>
+<!--End mc_embed_signup-->

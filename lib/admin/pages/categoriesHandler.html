@@ -1,0 +1,26 @@
+<section ng-controller="categoriesHandlerCtrl">
+    <admin-menu></admin-menu>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div ng-repeat="cat in allCategories">
+                    <a href="" ng-click="getOneCategory(cat.id)">{{cat.cat_name}}</a>
+                    <p>-----------------------------------------</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h3>Обновить категорию</h3>
+                <input type="hidden" ng-model="catId">
+                <input type="text" ng-model="catName">
+                <button ng-click="updateCategory(catId, catName)">Обновить категорию</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Добавить категорию</h3>
+                    <input type="text" ng-model="catNewName">
+                    <button href="" ng-click="addNewCategory(catNewName)">Добавить категорию</button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,54 @@
+<div class="article-footer-header" ng-if="showWordComment">Комментарии</div>
+<div class="for-input-comment"></div>
+<div ng-repeat="com in coms" class="for-input-comment">
+    <div class="post-item" >
+        <div class="row" >
+            <!--<div class="col-xs-2 post-item-img">-->
+            <!--<img src="lib/img/ico/ico-user-comment-pic.png">-->
+            <!--</div>-->
+            <div class="col-xs-12 post-item-content">
+                <!-- <div class="post-item-date">{{comments.com_date}}</div> -->
+                <div class="post-item-comment-header">{{com.com_author}}</div>
+                <div class="post-item-preview-text">{{com.com_text}}</div>
+                <!--<div class="post-item-footer">-->
+                <!--<span class="post-item-likes pull-right"><img src="lib/img/ico/ico-likes-for-message-item.png">{{com.com_likes}}</span>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article-footer-header">Добавить комментарий</div>
+<form>
+    <div class="col-xs-6" style="padding: 0;">
+        <input
+                type="text" senderName
+                ng-keyup="checkSenderName($event, commentUserName)"
+                ng-model="commentUserName"
+                class="form-control"
+                id="commentName"
+                placeholder="Ваше имя">
+    </div>
+    <div class="col-xs-6" style="padding: 0 0 0 10px;">
+        <input
+                type="e-mail" senderEmail
+                ng-keyup="checkSenderEmail($event, commentUserEmail)"
+                ng-model="commentUserEmail"
+                class="form-control"
+                id="commentEmail"
+                placeholder="Ваш e-mail"
+        >
+    </div>
+    <textarea
+            class="form-control"
+            id="commentText"
+            rows="7" senderText
+            placeholder="Комментарий"
+            ng-model="commentUserText"
+            ng-keyup="checkSenderText($event, commentUserText)"
+    ></textarea>
+    <button type="submit"
+            class="col-xs-12"
+            id="commentSend"
+            ng-click="postDataOfSender(commentUserName, commentUserEmail, commentUserText);">Опубликовать комментарий</button>
+</form>

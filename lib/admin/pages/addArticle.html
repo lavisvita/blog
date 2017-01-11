@@ -1,0 +1,40 @@
+<section ng-controller="addArticleCtrl">
+    <admin-menu></admin-menu>
+    <!-- -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Добавить картинку</h3>
+                <h4>Просто перетащите картинку на выделенную область</h4>
+                <div ng-controller="addPictureCtrl">
+                    Добавить файл сюда:
+                    <div ngf-drop ngf-select ng-model="files" class="drop-box"
+                         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                         accept="image/*,application/pdf"
+                         ngf-pattern="'image/*,application/pdf'">Бросьте файл в эту область</div>
+                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                    Загруженные файлы:
+                    <ul class="uploaded-files">
+                        <li>{{files[0].name}}</li>
+                        <li ng-repeat="f in files" >{{f.$error}} {{f.$errorParam}}</li>
+                    </ul>
+                    <!--Результат загрузки:-->
+                    <!--<pre>{{log}}</pre>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- -->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-lg-12">-->
+                <!--<div class="file-upload">-->
+                    <!--<input type="file" name="file" file-model="myFile"/>-->
+                    <!--<button ng-click="uploadFile()">upload me</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<add-article file="myFile"></add-article>-->
+    <add-article ></add-article>
+</section>

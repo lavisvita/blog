@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Выберите категорию</h3>
+            <select ng-model="catId" ng-options="cat.cat_name for cat in allCategories track by cat.id"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Заголовок статьи</h3>
+            <input type="text" ng-model="header" class="col-xs-12">
+            <h4>ЧПУ статьи</h4>
+            <input type="text" ng-model="articleFURL" placeholder="Пример ЧПУ: this-is-chpu-article" class="col-xs-12">
+            <!--<h3>Имя загружаемого файла</h3>-->
+            <!--<div>{{file.name}}</div>-->
+            <h3>Анонс статьи (preview)</h3>
+            <textarea rows="15" style="width: 600px" ng-model="articlePreview"></textarea>
+            <!--<wysiwyg-edit content="content" api="api"></wysiwyg-edit>-->
+            <form>
+            <textarea name="editor1" id="editor1" rows="10" cols="80" ></textarea>
+                <script type="text/javascript">
+                    var editor = CKEDITOR.replace( 'editor1', {
+                        filebrowserBrowseUrl : 'lib/js/ckfinder/ckfinder.html',
+                        filebrowserImageBrowseUrl : 'lib/js/ckfinder/ckfinder.html?type=Images',
+                        filebrowserFlashBrowseUrl : 'lib/js/ckfinder/ckfinder.html?type=Flash',
+                        filebrowserUploadUrl : 'lib/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                        filebrowserImageUploadUrl : 'lib/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                        filebrowserFlashUploadUrl : 'lib/js/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                    });
+                    CKFinder.setupCKEditor( editor, '../' );
+                </script>
+            </form>
+            <button ng-click="createArticle(catId.id, articleFURL, header, articlePreview, file.name);">Создать статью</button>
+        </div>
+    </div>
+</div>

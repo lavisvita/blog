@@ -1,0 +1,22 @@
+<section class="posts-list">
+    <div class="container">
+        <div class="post-item">
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3 post-item-img">
+                    <img ng-src="lib/upload/{{article.post_img}}">
+                </div>
+                <div class="col-sm-9 col-md-9 col-lg-9 post-item-content">
+                    <div class="post-item-date">{{article.post_date}}</div>
+                    <div class="post-item-header">{{article.post_header}}</div>
+                    <article-html-bind articlepreview="article.post_preview"></article-html-bind>
+                    <div class="post-item-footer">
+                        <span class="post-item-comments"><img src="lib/img/ico/ico-comments-for-message-item.png">{{article.post_comments}}</span>
+                        <span class="post-item-views"><img src="lib/img/ico/ico-views-for-message-item.png">{{article.post_views}}</span>
+                        <span class="post-item-likes"><img src="lib/img/ico/ico-likes-for-message-item.png">{{article.post_likes}}</span>
+                        <a href="#/article/{{article.id}}" class="post-item-read-more pull-right">читать далее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

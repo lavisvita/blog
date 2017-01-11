@@ -1,0 +1,29 @@
+<!--<section class="categories">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+                <!--<div class="categories-container">-->
+                    <!--<ul class="categories-menu">-->
+                        <!--<li ng-repeat="category in categories"><a href="" ng-click="showCategoryArticles(category.id)">{{category.cat_name}}</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+
+<!--<section class="post-filter">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-sm-12 col-md-12 col-lg-12">-->
+                <!--<a href="" class="post-filter-last-messages">Последние</a>-->
+                <!--<span class="post-filter-devider">/</span>-->
+                <!--<a href="" class="post-filter-popular-messages">Популярные</a>-->
+                <!--<a href="" class="post-filter-subscribe pull-right">подписаться</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</section>-->
+<div ng-repeat="article in allArticles">
+    <articles-edit article='article'></articles-edit>
+</div>

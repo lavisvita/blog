@@ -1,0 +1,15 @@
+<section ng-controller="commentsHandlerCtrl">
+    <admin-menu></admin-menu>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div ng-repeat="comment in allComments">
+                    <p href="">{{comment.com_author}}</p>
+                    <p href="">{{comment.com_text}}</p>
+                    <p href="">{{comment.user_email}}</p>
+                    <a href="" ng-click="deleteComment(comment.id)">Удалить комментарий</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
